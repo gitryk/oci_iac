@@ -11,6 +11,4 @@ services:
     volumes:
       - ./config:/config
       - /lib/modules:/lib/modules
-    sysctls:
-      - net.ipv4.conf.all.src_valid_mark=1
-    restart: unless-stopped
+    restart: always
