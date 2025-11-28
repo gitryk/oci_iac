@@ -2,7 +2,7 @@
 set -euxo pipefail #에러날 시 스크립트 종료
 
 #초기 변수 선언
-EXTRA_INSTALL="net-tools vim"
+EXTRA_INSTALL="net-tools vim cron"
 TAIL_HOSTNAME="${app_name}-oci-vm"
 TAIL_KEY="${tail_key}"
 TAIL_SUBNET="${tail_subnet}"
