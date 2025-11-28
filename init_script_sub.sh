@@ -5,7 +5,7 @@ set -euxo pipefail #에러날 시 스크립트 종료
 EXTRA_INSTALL="net-tools vim"
 
 function disable_ipv6 { #ipv6 비활성화
-  echo -e 'net.ipv6.conf.all.disable_ipv6 = 1\nnet.ipv6.conf.default.disable_ipv6 = 1\nnet.ipv4.ip_forward=1' | tee -a /etc/sysctl.conf
+  echo -e 'net.ipv6.conf.all.disable_ipv6 = 1\nnet.ipv6.conf.default.disable_ipv6 = 1' | tee -a /etc/sysctl.conf
   sysctl -p
 }
 
@@ -22,7 +22,7 @@ function install_docker { #docker 설치
   chmod a+r /etc/apt/keyrings/docker.asc
   echo \
     "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-    $(. /etc/os-release && echo \"$${UBUNTU_CODENAME:-$${VERSION_CODENAME}}\") stable" | \
+    $(. /etc/os-release && echo \"${UBUNTU_CODENAME:-${VERSION_CODENAME}}\") stable" | \
     tee /etc/apt/sources.list.d/docker.list > /dev/null
   apt-get update
   apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
